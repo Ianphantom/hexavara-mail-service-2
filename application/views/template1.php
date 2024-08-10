@@ -65,10 +65,10 @@
 												data-param-button-size="1" data-param-link-text="I want this"
 												data-param-href="#povezava#" data-param-float="1"
 												data-param-background-color="#296CD4" data-param-color="ffffff">
-												<table cellspacing="0" cellpadding="0">
+												<table cellspacing="0" cellpadding="0" width="100%">
 													<tr>
 														<td align="center" width="400" height="40" bgcolor="#296CD4"
-															style="-webkit-border-radius: 5px; -moz-border-radius: 5px; bord-radius: 5px; color: #FFFFFF; display: block;">
+															style="-webkit-border-radius: 5px; -moz-border-radius: 5px; bord-radius: 5px; color: #FFFFFF; display: block; width:100%">
 															<a href="mailto:<?= $recipientEmail ?>"
 																style="font-size:16px; font-weight: bold; font-family: Helvetica, Arial, sans-serif; text-decoration: none; line-height:40px; width:100%; display:inline-block">
 																<span style="color: #FFFFFF">Contact The Client
