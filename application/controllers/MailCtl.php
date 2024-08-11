@@ -25,26 +25,10 @@ class MailCtl extends CI_Controller {
 
 	public function projectOpportunity()
 	{
-		// Load necessary libraries and helpers
-		$emailConfig = Array(
-			'protocol' => 'smtp',
-			'smtp_host' => 'ssl://smtp.gmail.com',
-			'smtp_port' => 465,
-			'smtp_user' => 'felix@savantdegrees.com',
-			'smtp_pass' => 'ektinrvaiqxujylx1',
-			'mailtype'  => 'html',
-			'charset'   => 'iso-8859-1'
-		);
-		$this->load->library('email', $emailConfig);
-		$this->email->set_newline("\r\n");
-		
-		// $this->load->library('email');
+
+		$this->load->library('email');
 		$this->load->helper('date');
-
-		// Get current time
 		$time = now();
-
-		// Get form input values
 		$data = [
 			'name' => $this->input->post('name'),
 			'email' => $this->input->post('email'),
@@ -57,20 +41,21 @@ class MailCtl extends CI_Controller {
 			'randomness' => $time
 		];
 
-		// Handle file upload for 'projectBrief'
+
 		$config['upload_path'] = './uploads/';
-		$config['allowed_types'] = 'pdf|doc|docx|txt'; // adjust according to your needs
+		$config['allowed_types'] = 'jpg|jpeg|png|pdf|doc|docx|svg|ppt'; // SVG, PNG, JPG, DOCS, PDF or PPT
 		$config['encrypt_name'] = TRUE;
 
 		$this->load->library('upload', $config);
 
-		if ($this->upload->do_upload('projectBrief')) {
+		if (!$this->upload->do_upload('projectBrief')) {
+			$error = $this->upload->display_errors();
+			$projectBriefPath = null;
+			$projectBriefName = null;
+		} else {
 			$uploadData = $this->upload->data();
 			$projectBriefPath = $uploadData['full_path'];
 			$projectBriefName = $uploadData['file_name'];
-		} else {
-			$projectBriefPath = null;
-			$projectBriefName = null;
 		}
 
 		// Set up email
@@ -87,10 +72,13 @@ class MailCtl extends CI_Controller {
 
 		// Send email and return response
 		if ($this->email->send()) {
+			if ($projectBriefPath && file_exists($projectBriefPath)) {
+				unlink($projectBriefPath);
+			}
 			$response = [
 				'status' => 'success',
 				'message' => 'Form submitted successfully',
-				'data' => $data
+				'data' => $projectBriefPath
 			];
 		} else {
 			$response = [
