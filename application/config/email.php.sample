@@ -4,10 +4,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $config['protocol']     = 'smtp';
 $config['smtp_host']    = 'ssl://smtp.gmail.com';
 $config['smtp_port']    = 465;
-$config['smtp_user']    = 'felix@savantdegrees.com';
-$config['smtp_pass']    = 'ektinrvaiqxujylx';
+$config['smtp_user']    = 'mailservicehexavara@gmail.com';
+$config['smtp_pass']    = 'xkxtgookyzzkjrtg1ba2b3';
 $config['mailtype']     = 'html';
 $config['charset']      = 'iso-8859-1';
 $config['newline']      = "\r\n"; 
+$config['projectOppertunity'] = 'ian25yola@gmail.com' ;
 
 ?>
