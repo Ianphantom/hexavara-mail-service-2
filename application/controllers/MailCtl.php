@@ -11,6 +11,9 @@ class MailCtl extends CI_Controller
 
 	public function projectOpportunity()
 	{
+		header('Access-Control-Allow-Origin: *');
+		header('Access-Control-Allow-Methods: GET, OPTIONS, POST, GET, PUT');
+		header('Access-Control-Allow-Headers: Content-Type, Content-Length, Accept-Encoding');
 		$this->load->library('email');
 		$this->load->helper('date');
 		$time = now();
