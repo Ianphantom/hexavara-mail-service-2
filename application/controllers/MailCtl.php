@@ -26,7 +26,10 @@ class MailCtl extends CI_Controller
 			'randomness' => $time
 		];
 
-		$config['upload_path'] = './uploads/';
+		$this->load->config('upload');
+		$uploadPath = $this->config->item('uploadPath');
+
+		$config['upload_path'] = $uploadPath;
 		$config['allowed_types'] = 'jpg|jpeg|png|pdf|doc|docx|svg|ppt'; // SVG, PNG, JPG, DOCS, PDF or PPT
 		$config['encrypt_name'] = true;
 
